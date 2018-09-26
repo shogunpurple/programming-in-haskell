@@ -7,9 +7,9 @@ firstOneHundredIntSquares = sum [x^2 | x <- [1..100]]
 grid :: Int -> Int -> [(Int,Int)]
 grid x y = [(x,y) | x <- [0..x], y <- [0..y]]
 
--- Ex3 - unsure
-{-square :: Int -> [(Int, Int)]-}
-{-square n = [grid x | x <- [0..n]]-}
+-- Ex3
+square :: Int -> [(Int, Int)]
+square n = [(x,y) | (x,y) <- grid n n, x /= y]
 
 -- Ex4
 replicate' :: Int -> a -> [a] 
@@ -17,7 +17,10 @@ replicate' n val =  [val | x <- [1..n]]
 
 -- Ex5 - unsure 
 pyths :: Int -> [(Int,Int,Int)]
-pyths n = [(x,y,z) | x <- [0..], y <- [0..], z <- [0..], x+y+z < n]
+pyths n = [(x,y,z) | x <- [1..n], 
+                     y <- [1..n], 
+                     z <- [1..n], 
+                     x^2 + y^2 == z^2]
 
 -- Ex6
 -- A perfect integer is one that equals the sum of all its factors. Excluding the number itself.
